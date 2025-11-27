@@ -31,3 +31,20 @@ O objetivo deste projeto é criar um pipeline de dados que:
 
 ---
 *Projeto desenvolvido para fins de estudo em Engenharia de Dados e IA.*
+
+### 🔍 Utilitário: Listando Modelos Disponíveis
+
+Como a API do Google Gemini é atualizada frequentemente com novas versões (ex: `gemini-1.5-flash`, `gemini-2.0`), incluí um script para listar exatamente quais modelos estão disponíveis para a sua API Key.
+
+**Código de Verificação:**
+
+```python
+import google.generativeai as genai
+
+GOOGLE_API_KEY = "SUA_CHAVE_AQUI"
+genai.configure(api_key=GOOGLE_API_KEY, transport='rest')
+
+# Lista todos os modelos que suportam geração de conteúdo
+for m in genai.list_models():
+    if 'generateContent' in m.supported_generation_methods:
+        print(f"- {m.name}")
